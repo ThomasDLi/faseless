@@ -1,0 +1,63 @@
+.big{
+
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding-left: 5vw;
+
+}
+
+.center{
+
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+
+}
+
+.beginLink{
+
+  color: #3CE8A9;
+  font-size: 3vw;
+  padding-bottom: 5vh;
+
+}
+
+.title{
+
+  font-size: 7vw;
+  margin-bottom: -2vh;
+  padding-top: -20vh;
+  text-align: center;
+
+}
+
+.green{
+
+  color: #4FFF8C;
+
+}
+
+.yellow{
+
+  color: #42FFEF;
+
+}
+
+.dark_green{
+
+  color: #25B357;
+
+}
+
+.description{
+
+
+  font-size: 2vw;
+  text-align: center;
+
+}
