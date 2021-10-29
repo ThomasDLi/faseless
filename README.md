@@ -3,17 +3,17 @@ Anonymous and open source social media site. Programmed in Next.JS, backend in F
 
 ### dependencies
 
-Python Server Dependencies:
+Python Server Dependencies (server found in /server):
 
 - fastapi
 - requests lib
 - uvicorn (to run server, type "uvicorn server:app --reload" after installing)
 
-NPM Frontend Dependencies:
+NPM Frontend Dependencies (frontend found in /faseless):
 
 - Next.JS
 
-type "npm install" after installing files to auto install
+type "npm install" while in the "faseless" directory after downloading files to auto install
 
 ### known issues and currently being worked on things
 
