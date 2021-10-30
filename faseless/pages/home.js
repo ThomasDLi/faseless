@@ -38,7 +38,7 @@ export default function home({data}) {
 }
 
 export async function getServerSideProps(context) {
-    const res = await fetch(`http://127.0.0.1:8000/fetch_posts`)
+    const res = await fetch(`http://ec2-54-188-200-163.us-west-2.compute.amazonaws.com:8000/fetch_posts`)
     const data = await res.json()
   
     if (!data) {
