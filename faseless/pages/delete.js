@@ -35,7 +35,7 @@ export default function delete_post(){
         console.log(topic + " " + post + " " + password);
         try{
         
-            let serverSubmission = fetch(`http://127.0.0.1:8000/delete_posts?post_id=${post}&topic=${topic}&password=${password}`);
+            let serverSubmission = fetch(`http://ec2-54-188-200-163.us-west-2.compute.amazonaws.com:8000/delete_posts?post_id=${post}&topic=${topic}&password=${password}`);
             console.log(serverSubmission);
             Router.push("/home");
         }
