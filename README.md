@@ -20,3 +20,5 @@ type "npm install" while in the "faseless" directory after downloading files to 
 Currently data is stored with a JSON file on the server, plans to migrate to MongoDB is being worked on right now, should be done in 1-2 weeks.
 
 Passwords are currently stored in plaintext, working on hashing them and more secure ways of checking passwords. Should be done in 1-2 weeks.
+
+Images are not shown on the web GUI. Images are being sent to the client however not being shown. Should be done in 1-2 weeks.
