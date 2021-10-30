@@ -51,7 +51,7 @@ export default function posting() {
         console.log(title + " " + text + " " + password + " " + image + " " + topic);
         try{
         
-            let serverSubmission = fetch(`http://127.0.0.1:8000/posting?title=${title}&text=${text}&password=${password}&image=${image}&topic=${topic}`);
+            let serverSubmission = fetch(`http://ec2-54-188-200-163.us-west-2.compute.amazonaws.com:8000/posting?title=${title}&text=${text}&password=${password}&image=${image}&topic=${topic}`);
             console.log(serverSubmission);
             Router.push("/home");
         }
