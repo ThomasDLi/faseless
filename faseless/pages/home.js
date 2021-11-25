@@ -1,4 +1,5 @@
 import {fetch_posts} from "../components/fetch_posts"
+import {server_url} from "../components/server_url"
 import Link from 'next/link'
 import {useState} from "react"
 import styles from "../styles/Home.module.css"
@@ -38,7 +39,7 @@ export default function home({data}) {
 }
 
 export async function getServerSideProps(context) {
-    const res = await fetch(`http://ec2-54-188-200-163.us-west-2.compute.amazonaws.com:8000/fetch_posts`)
+    const res = await fetch(`${server_url()}fetch_posts`)
     const data = await res.json()
   
     if (!data) {

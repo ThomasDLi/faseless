@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Router from 'next/router'
 import styles from '../styles/Home.module.css'
+import {server_url} from "../components/server_url"
 
 export default function delete_post(){
 
@@ -35,7 +36,7 @@ export default function delete_post(){
         console.log(topic + " " + post + " " + password);
         try{
         
-            let serverSubmission = fetch(`http://ec2-54-188-200-163.us-west-2.compute.amazonaws.com:8000/delete_posts?post_id=${post}&topic=${topic}&password=${password}`);
+            let serverSubmission = fetch(`${server_url()}delete_posts?post_id=${post}&topic=${topic}&password=${password}`);
             console.log(serverSubmission);
             Router.push("/home");
         }

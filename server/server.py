@@ -1,7 +1,12 @@
 from fastapi import FastAPI
 import json
 import random
+from pymongo import MongoClient
 
+client = MongoClient('mongodb+srv://admin:<Thomasli0504$>@cluster0.ihyt1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+db = client['cluster0']
+collection = db['faseless']
+posts = collection["posts"]
 app = FastAPI()
 
 @app.get("/")
@@ -11,16 +16,16 @@ def home():
 @app.get("/posting")
 def posting(title, text, password, image, topic):
 
-    if len(title) > 100:
+    if len(title) > 101:
         return "length_error title"
 
-    if len(text) > 2000:
+    if len(text) > 2001:
         return "length_error text"
 
-    if len(password) > 250:
+    if len(password) > 251:
         return "length_error password"
 
-    if len(image) > 200:
+    if len(image) > 201:
         return "length_error title"
 
     if topic == "general" or topic == "memes" or topic == "games" or topic == "programming" or topic == "art" or topic == "math/science":
