@@ -3,7 +3,7 @@ import json
 import random
 from pymongo import MongoClient
 
-client = MongoClient('mongodb+srv://admin:<Thomasli0504$>@cluster0.ihyt1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+client = MongoClient('')
 db = client['cluster0']
 collection = db['faseless']
 posts = collection["posts"]
