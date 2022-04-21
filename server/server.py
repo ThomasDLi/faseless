@@ -1,13 +1,21 @@
 from fastapi import FastAPI
 import json
 import random
+import pymongo
 from pymongo import MongoClient
+import ssl
+from bson import ObjectId
 
-client = MongoClient('mongodb+srv://admin:<Thomasli0504$>@cluster0.ihyt1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-db = client['cluster0']
+mongo_key = ""
+
+client = MongoClient(mongo_key, ssl_cert_reqs=ssl.CERT_NONE)
+db = client['faseless']
 collection = db['faseless']
 posts = collection["posts"]
 app = FastAPI()
+
+with open("badwords.json") as g:
+    BADWORDS = json.load(g)
 
 @app.get("/")
 def home():
@@ -28,32 +36,29 @@ def posting(title, text, password, image, topic):
     if len(image) > 201:
         return "length_error title"
 
-    if topic == "general" or topic == "memes" or topic == "games" or topic == "programming" or topic == "art" or topic == "math/science":
-        pass
-    else:
+    #if topic == "general" or topic == "memes" or topic == "games" or topic == "programming" or topic == "art" or topic == "math/science":
+    #    pass
+    if topic not in set(["general", "memes", "games", "programming", "art", "math/science"]):
         return "invalid topic"
 
-    with open("posts.json") as f:
-        data = json.load(f)
-    
-    with open("badwords.json") as g:
-        badwords = json.load(g)
+    #with open("posts.json") as f:
+    #    data = json.load(f)
 
-    for x in badwords["words"]:
+    for x in BADWORDS["words"]:
         if x in title:
             return "bad word"
         elif x in text:
             return "bad word"
 
-    post_id = random.randint(10000000, 99999999)
+    #post_id = random.randint(10000000, 99999999)
 
-    for topics in data:
-        while(post_id in data[topics]):
-            post_id = random.randint(10000000, 99999999)
+    #for topics in data:
+    #    while(post_id in data[topics]):
+    #        post_id = random.randint(10000000, 99999999)
 
-    data[topic][post_id] = {"title" : title, "text" : text, "password" : password, "image" : image}
-    with open("posts.json", 'w') as json_file:
-        json.dump(data, json_file)
+    posts.insert_one({"title" : title, "text" : text, "password" : password, "image" : image, "topic" : topic})
+    #with open("posts.json", 'w') as json_file:
+    #    json.dump(data, json_file)
     return "success"
 
 @app.get("/replying")
@@ -67,22 +72,39 @@ def replying(post_id, text):
         json.dump(data, json_file)
 
 @app.get("/fetch_posts")
-def fetch_posts():
-    with open("posts.json") as f:
-        data = json.load(f)
+def fetch_posts(topic : str, page : int):
+    #with open("posts.json") as f:
+    #    data = json.load(f)
+
+    data = list(posts.find({"topic" : topic}, skip=int(page) * 10, limit = 10).sort("_id", -1))
+    for x in range(len(data)):
+        data[x]["_id"] = str(data[x]["_id"])
+        data[x]["password"] = ""
+    print(data)
     return data
+
+@app.get("/fetch_one")
+def fetch_one(id):
+    data = posts.find_one({"_id" : ObjectId(id)})
+    data["_id"] = str(data["_id"])
+    data["password"] = ""
+    datal = []
+    datal.append(data)
+    print(datal)
+    return datal
 
 @app.get("/delete_posts")
 def delete_posts(post_id, topic, password):
-    with open("posts.json") as f:
-        data = json.load(f)
-    if data[topic][post_id]["password"] == password:
-        del data[topic][post_id]
+    #with open("posts.json") as f:
+    #    data = json.load(f)
+    print(str(posts.find_one({"_id" : ObjectId(post_id)})))
+    if str(posts.find_one({"_id" : ObjectId(post_id)}).get("password", None)) == password:
+        posts.delete_one({"_id" : ObjectId(post_id)})
 
     else:
         return "failed"
 
-    with open("posts.json", 'w') as json_file:
-        json.dump(data, json_file)
+    #with open("posts.json", 'w') as json_file:
+    #    json.dump(data, json_file)
 
     return "success"

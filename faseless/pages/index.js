@@ -8,8 +8,8 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.big}>
         <h1 className={styles.title}><span className={styles.green}>Faseless.</span><br /><span className={styles.yellow}>Traseless.</span><br /><span className={styles.dark_green}>Open Source.</span></h1>
-        <h2 className={styles.description}>Green and Anonymous like 4Chan,<br />Wholesome and Non-Toxic Like Reddit.</h2>
-        <h4 className={styles.beginLink}><Link href="/home"><a><u>Start Posting</u></a></Link></h4>
+        <h2 className={styles.description}>A simple to use UI, fast backend,<br />while still being secure and open source.</h2>
+        <h4 className={styles.beginLink}><Link href="/home?topic=general&page=0"><a><u>Start Posting</u></a></Link></h4>
       </div>
     </div>
   )

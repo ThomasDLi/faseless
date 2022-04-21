@@ -41,7 +41,7 @@ export default function posting() {
 
     const handleTopic = (e) => {
 
-        e.preventDefault();
+        //e.preventDefault();
         setTopic(e.target.value);
 
     }
