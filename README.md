@@ -7,6 +7,7 @@ Python Server Dependencies (server found in /server):
 
 - fastapi
 - requests lib
+- mongodb for python, as well as a mongodb server.
 - uvicorn (to run server, type "uvicorn server:app --reload" after installing)
 
 NPM Frontend Dependencies (frontend found in /faseless):
@@ -17,8 +18,5 @@ type "npm install" while in the "faseless" directory after downloading files to 
 
 ### known issues and currently being worked on things
 
-Currently data is stored with a JSON file on the server, plans to migrate to MongoDB is being worked on right now, should be done in 1-2 weeks.
-
 Passwords are currently stored in plaintext, working on hashing them and more secure ways of checking passwords. Should be done in 1-2 weeks.
-
-Images are not shown on the web GUI. Images are being sent to the client however not being shown. Should be done in 1-2 weeks.
+Update: too lazy to fix, passwords will continue to be stored in plaintext.
