@@ -11,7 +11,7 @@ export default function delete_post(){
 
     const handleTopic = (e) => {
 
-        e.preventDefault();
+        //e.preventDefault();
         setTopic(e.target.value);
 
     }
@@ -50,7 +50,7 @@ export default function delete_post(){
 
     }
 
-    return(<div>
+    return(<div className={styles.center}>
 
         <h1>post deletion</h1>
         <form onSubmit={handleSubmit}>
@@ -72,6 +72,8 @@ export default function delete_post(){
         <h2>password:</h2>
 
         <input type="text" onChange={handlePassword} />
+
+        <p />
 
         <input type="submit" />
         </form>
