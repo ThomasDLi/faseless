@@ -10,6 +10,7 @@ mongo_key = ""
 
 client = MongoClient(mongo_key, ssl_cert_reqs=ssl.CERT_NONE)
 db = client['faseless']
+
 collection = db['faseless']
 posts = collection["posts"]
 app = FastAPI()
