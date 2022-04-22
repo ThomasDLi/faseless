@@ -4,11 +4,13 @@ import random
 import pymongo
 from pymongo import MongoClient
 import ssl
+import os
 from bson import ObjectId
+import uvicorn
 
-mongo_key = ""
+mongo_key = os.environ["MONGO"]
 
-client = MongoClient(mongo_key, ssl_cert_reqs=ssl.CERT_NONE)
+client = MongoClient(mongo_key)
 db = client['faseless']
 
 collection = db['faseless']
@@ -109,3 +111,5 @@ def delete_posts(post_id, topic, password):
     #    json.dump(data, json_file)
 
     return "success"
+
+uvicorn.run(app,host="0.0.0.0",port=8080)
